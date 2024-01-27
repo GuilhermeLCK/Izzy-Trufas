@@ -266,8 +266,20 @@ function ModalPagamentos({ OpenModal, vendaUpdate }) {
                       <td>{venda.Participante}</td>
                       <td>{venda.Inclusao}</td>
                       <td>{venda.QuantidadeVendida}</td>
-                      <td>R${venda.ValorUnidade}</td>
-                      <td>R${venda.TotalVenda}</td>
+                      <td>
+                        {" "}
+                        {new Intl.NumberFormat("pt-BR", {
+                          style: "currency",
+                          currency: "BRL",
+                        }).format(venda.ValorUnidade)}
+                      </td>
+                      <td>
+                        {" "}
+                        {new Intl.NumberFormat("pt-BR", {
+                          style: "currency",
+                          currency: "BRL",
+                        }).format(venda.TotalVenda)}
+                      </td>
                       <td>
                         {venda.VendaAtrasada === true ? (
                           <FaCircle color="red" />

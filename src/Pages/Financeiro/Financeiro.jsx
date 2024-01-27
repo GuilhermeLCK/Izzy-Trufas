@@ -50,6 +50,25 @@ function Financeiro() {
 
     return () => unsubscribe();
   }, []);
+
+  const totalVenda = new Intl.NumberFormat("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+  }).format(financeiro?.totalVenda);
+
+  const totalPago = new Intl.NumberFormat("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+  }).format(
+    parseFloat(financeiro?.totalVenda).toFixed(2) -
+      parseInt(financeiro?.valorPendenteDePagamento.toFixed(2))
+  );
+
+  const valorPendenteDePagamento = new Intl.NumberFormat("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+  }).format(financeiro?.valorPendenteDePagamento);
+
   return (
     <>
       <Dashboard
@@ -60,12 +79,9 @@ function Financeiro() {
         icone02={<FaCloudDownloadAlt size={65} />}
         text03={"TOTAL A RECEBER"}
         icone03={<FaMoneyBillAlt size={65} />}
-        Total01={financeiro?.totalVenda}
-        Total02={
-          parseFloat(financeiro?.totalVenda).toFixed(2) -
-          parseInt(financeiro?.valorPendenteDePagamento.toFixed(2))
-        }
-        Total03={financeiro?.valorPendenteDePagamento}
+        Total01={totalVenda}
+        Total02={totalPago}
+        Total03={valorPendenteDePagamento}
       />
     </>
   );

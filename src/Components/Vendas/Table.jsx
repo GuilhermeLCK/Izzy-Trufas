@@ -20,7 +20,6 @@ function Table() {
   const [vendas, setVendas] = useState({});
   const [loadTable, setLoadTable] = useState(false);
   const [load, setLoad] = useState(true);
-
   const [open, setOpen] = useState(false);
   const [vendaUpdate, setVendaUpdate] = useState([]);
 
@@ -136,8 +135,18 @@ function Table() {
                     <td>{venda.Inclusao}</td>
                     <td>{venda.Participante}</td>
                     <td>{venda.QuantidadeVendida}</td>
-                    <td>R${venda.TotalVenda}</td>
-                    <td>R${venda.ValorUnidade}</td>
+                    <td>
+                      {new Intl.NumberFormat("pt-BR", {
+                        style: "currency",
+                        currency: "BRL",
+                      }).format(venda.TotalVenda)}
+                    </td>
+                    <td>
+                      {new Intl.NumberFormat("pt-BR", {
+                        style: "currency",
+                        currency: "BRL",
+                      }).format(venda.ValorUnidade)}
+                    </td>
                     <td>
                       {venda.VendaAtrasada === false ? (
                         <FaCircle color="green" />
