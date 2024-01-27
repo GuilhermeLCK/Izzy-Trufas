@@ -1,0 +1,107 @@
+.Container-ModalEstoque {
+  width: 100vw;
+  height: 100vh;
+  backdrop-filter: blur(
+    2px
+  ); /* Ajuste o valor conforme necessário para controlar o desfoque */
+  position: fixed;
+  z-index: 99;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Container-ModalEstoque-Section {
+  height: 200px;
+  min-width: 500px;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-around;
+  background-color: #2f4050;
+  border-radius: 5px;
+  position: relative;
+  gap: 20px;
+
+  .Container-ModalEstoque-Section-input {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 100%;
+    height: 70%;
+
+    h1 {
+      text-align: center;
+      width: 100%;
+      font-size: 26px;
+      font-weight: 200;
+      color: rgb(255, 255, 255);
+    }
+    input {
+      width: 60%;
+      outline: none;
+      border-radius: 3px;
+      min-width: 40%;
+      border: 1px solid rgb(194, 194, 194);
+      min-height: 35px;
+      padding-inline: 7px;
+      padding-block: 5px;
+      font-size: 14px;
+      font-weight: 500;
+      transition: 0.7s;
+    }
+    input:focus {
+      transition: 0.4s;
+      border: 1px solid #000000b0;
+    }
+  }
+
+  .Container-ModalEstoque-Section-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60%;
+    height: 30%;
+    gap: 10px;
+
+    button {
+      min-width: 45%;
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      padding-inline: 5px;
+      padding-block: 5px;
+      font-size: 15px;
+      font-weight: 500;
+      transition: 0.7s;
+      border: none;
+      border-radius: 5px;
+      font-weight: 700;
+      padding: 5px;
+      color: #ffff;
+      gap: 10px;
+      transition: 0.4s;
+    }
+
+    .button_close {
+      background-color: #7e0d0d;
+
+      &:hover {
+        transition: 0.8s;
+        background-color: #a70000;
+      }
+    }
+    .button_confirm {
+      background-color: #00b300;
+      &:hover {
+        transition: 0.8s;
+        background-color: #026102;
+      }
+    }
+  }
+}

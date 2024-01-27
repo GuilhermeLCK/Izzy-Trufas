@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/CarIcone.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/CarIcone.png" />
+    <title>Trufas da Paty</title>
+  </head>
+  <body>
+    <noscript>Yo sistema de vendas de trufas</noscript>
+    <div id="root"></div>
+
+    <!-- Seu script movido para o final do corpo da página -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        document.addEventListener("keydown", function (event) {
+          // Verifique se a tecla pressionada é F2
+          if (event.key === "F2") {
+            // Substitua isso com a lógica para obter a URL desejada
+            const novaTelaUrl = prompt("Digite a URL da nova tela:");
+
+            // Verifique se a URL é válida
+            if (novaTelaUrl) {
+              // Redirecione para a nova tela
+              window.location.href = novaTelaUrl;
+            } else {
+              console.error("URL inválida");
+            }
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

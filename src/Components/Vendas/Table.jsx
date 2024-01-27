@@ -1,0 +1,175 @@
+import React, { useEffect, useState } from "react";
+import "../../Scss/Table.scss";
+import { FaCircle } from "react-icons/fa";
+
+import { db } from "../../Services/Firebase";
+import { collection, onSnapshot } from "firebase/firestore";
+
+import ModalPagamentos from "../Modals/ModalPagamentos";
+
+function Table() {
+  const arrayTh = [
+    "Inclusão",
+    "Participante",
+    "Quantidade",
+    "Valor",
+    "Valor da Unidade",
+    "Situação",
+    "Pagamento",
+  ];
+  const [vendas, setVendas] = useState({});
+  const [loadTable, setLoadTable] = useState(false);
+  const [load, setLoad] = useState(true);
+
+  const [open, setOpen] = useState(false);
+  const [vendaUpdate, setVendaUpdate] = useState([]);
+
+  const dataAtual = new Date();
+  const dia = String(dataAtual.getDate()).padStart(2, "0");
+  const mes = String(dataAtual.getMonth() + 1).padStart(2, "0");
+  const ano = dataAtual.getFullYear();
+  const dataHoje = `${dia}/${mes}/${ano}`;
+
+  function OpenModal(prop) {
+    setOpen(!open);
+    setVendaUpdate(prop);
+  }
+  useEffect(() => {
+    const vendasRef = collection(db, "Movimentos");
+
+    const unsubscribeVendas = onSnapshot(vendasRef, (snapshot) => {
+      const vendasAgrupadas = {};
+
+      snapshot.docs.forEach((venda) => {
+        const vendaData = venda.data();
+        const idVendaParticipante = vendaData.VendaParticipanteId;
+
+        // Adiciona a validação da Situacao
+        if (vendaData.Situacao !== 2) {
+          if (!vendasAgrupadas[idVendaParticipante]) {
+            vendasAgrupadas[idVendaParticipante] = {
+              Participante: vendaData.Participante,
+              Inclusao: [],
+              VendaParticipanteId: vendaData.VendaParticipanteId,
+              MovimentosIDs: [],
+              FinanceiroIDs: [],
+              QuantidadeVendida: 0,
+              ValorUnidade: 0, // Inicializa com zero para acumular
+              TotalVenda: 0,
+              ValorPendenteDePagamento: vendaData.ValorPendenteDePagamento,
+              Situacao: vendaData.Situacao,
+              VendaAtrasada: false,
+            };
+          }
+
+          // Adiciona apenas o ID da venda ao array de Vendas
+          if (vendaData.MovimentoId) {
+            vendasAgrupadas[idVendaParticipante].MovimentosIDs.push(
+              vendaData.MovimentoId
+            );
+            vendasAgrupadas[idVendaParticipante].FinanceiroIDs.push(
+              vendaData.FinanceiroId
+            );
+
+            vendasAgrupadas[idVendaParticipante].Inclusao.push(
+              vendaData.Inclusao
+            );
+          }
+
+          // Atualiza as informações agrupadas {}
+          vendasAgrupadas[idVendaParticipante].QuantidadeVendida +=
+            vendaData.QuantidadeVendida;
+          vendasAgrupadas[idVendaParticipante].TotalVenda +=
+            vendaData.TotalVenda;
+          vendasAgrupadas[idVendaParticipante].ValorUnidade +=
+            vendaData.ValorUnidade;
+        }
+      });
+
+      // Converte o objeto de volta para um array
+      const listVendas = Object.values(vendasAgrupadas);
+
+      listVendas.forEach((venda) => {
+        const qtndVendida = venda.QuantidadeVendida;
+
+        venda.ValorUnidade = parseFloat(
+          (venda.TotalVenda / qtndVendida).toFixed(2)
+        );
+
+        // Armazena todas as datas de inclusão no campo Inclusao
+        const lastInclusionDate = venda.Inclusao.slice(-2)[0];
+        const lastInclusionDatae = venda.Inclusao[0];
+
+        // Atualiza VendaAtrasada se a última data de inclusão for diferente de hoje
+        venda.VendaAtrasada = lastInclusionDate !== dataHoje;
+
+        // Mostra apenas a última data de inclusão na tabela
+        venda.Inclusao = lastInclusionDatae;
+      });
+
+      setVendas(listVendas);
+      setLoadTable(true);
+      setLoad(false);
+    });
+
+    return () => unsubscribeVendas();
+  }, []);
+
+  return (
+    <div className="Container-Table">
+      <div className="Container-Table-Section">
+        <table className="Container-Table-Table">
+          <thead>
+            <tr>
+              {arrayTh.map((th, index) => {
+                return <th key={index}>{th}</th>;
+              })}
+            </tr>
+          </thead>
+          <tbody>
+            {vendas && vendas.length > 0 ? (
+              vendas
+                .filter((venda) => venda.Situacao === 1)
+                .sort((a, b) => a.Participante.localeCompare(b.Participante))
+                .map((venda, index) => (
+                  <tr key={index}>
+                    <td>{venda.Inclusao}</td>
+                    <td>{venda.Participante}</td>
+                    <td>{venda.QuantidadeVendida}</td>
+                    <td>R${venda.TotalVenda}</td>
+                    <td>R${venda.ValorUnidade}</td>
+                    <td>
+                      {venda.VendaAtrasada === false ? (
+                        <FaCircle color="green" />
+                      ) : (
+                        <FaCircle color="red" />
+                      )}
+                    </td>
+                    <td>
+                      <button
+                        onClick={() => {
+                          OpenModal(venda);
+                        }}
+                      >
+                        Pagar
+                      </button>
+                    </td>
+                  </tr>
+                ))
+            ) : (
+              <tr>
+                <td colSpan="5">Não tem nenhuma venda pendente</td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+
+        {open ? (
+          <ModalPagamentos OpenModal={OpenModal} vendaUpdate={vendaUpdate} />
+        ) : null}
+      </div>
+    </div>
+  );
+}
+
+export default Table;

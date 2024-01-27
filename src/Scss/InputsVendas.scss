@@ -1,0 +1,134 @@
+.Container-InputsVendas {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Container-InputsVendas-Form {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.Container-InputsVendas-Form-Section {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+
+  form {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    position: relative;
+  }
+
+  input,
+  select {
+    width: 45%;
+    outline: none;
+    border-radius: 3px;
+    min-width: 40%;
+    border: 1px solid rgb(180, 180, 180);
+    min-height: 35px;
+    padding-inline: 7px;
+    padding-block: 5px;
+    font-size: 14px;
+    font-weight: 400;
+    transition: 0.2s;
+  }
+  input:focus {
+    transition: 0.4s;
+    border: 1px solid #18a689;
+  }
+
+  button {
+    min-width: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 35px;
+    padding-inline: 3px;
+    padding-block: 5px;
+    font-size: 14px;
+    font-weight: 400;
+    background-color: #007aff;
+    border: none;
+    border-radius: 5px;
+    font-weight: 700;
+    color: rgb(255, 255, 255);
+    transition: 0.4s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    &:hover {
+      transition: 0.8s;
+      background-color: #0061c9;
+      box-shadow: rgba(0, 0, 0, 0.2) 0px 60px 40px -7px;
+    }
+  }
+}
+
+.combox-div {
+  width: 44%;
+  margin-top: 40px;
+  top: 0;
+  left: 0;
+  position: absolute;
+  z-index: 999;
+  background-color: #d6d6d6;
+  box-shadow: 6px 4px 5px 0px rgba(145, 145, 145, 0.356);
+  -webkit-box-shadow: 6px 4px 5px 0px rgba(145, 145, 145, 0.247);
+  -moz-box-shadow: 6px 4px 5px 0px rgba(145, 145, 145, 0.185);
+  display: flex;
+  align-items: start;
+  justify-content: start;
+  flex-direction: column;
+  padding: 5px;
+  padding-block: 10px;
+  max-height: 500px;
+  overflow: auto;
+  border-radius: 5px;
+
+  p {
+    font-size: 16px;
+    font-weight: 400;
+    padding: 4px;
+    width: 100%;
+    padding-inline: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.2s;
+
+    &:hover {
+      transition: 0.4s;
+      color: #ffff;
+      background-color: #18a689;
+    }
+  }
+
+  .Nenhum {
+    text-align: center;
+  }
+}
+
+.combox-div::-webkit-scrollbar {
+  width: 5px;
+}
+
+.combox-div::-webkit-scrollbar-track {
+  border-radius: 100px;
+  background-color: #d6d6d6;
+}
+
+.combox-div::-webkit-scrollbar-thumb {
+  background-color: var(--primary-color-light);
+  border-radius: 100px;
+  background-color: #18a689;
+}

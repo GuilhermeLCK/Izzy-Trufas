@@ -1,0 +1,114 @@
+.Container-Table {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Container-Table-Section {
+  background-color: #001a2b;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 3px;
+}
+
+.Container-Table-Table {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding-top: 0px;
+  padding: 0;
+  thead {
+    width: 100%;
+
+    tr {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+    }
+
+    th {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: 1;
+      color: aliceblue;
+      font-size: 16px;
+      font-weight: 500;
+      padding-block: 15px;
+      gap: 5px;
+      border-bottom: 1px solid aliceblue;
+    }
+  }
+
+  tbody {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    tr {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      cursor: pointer;
+
+      &:hover {
+        transition: 0.5s;
+        background-color: rgb(1, 18, 29);
+      }
+    }
+
+    td {
+      min-height: 55px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: 1;
+      color: aliceblue;
+      font-size: 15px;
+      font-weight: 300;
+      padding-block: 8px;
+      border-bottom: 1px solid aliceblue;
+
+      button {
+        padding-block: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 50%;
+        background-color: #0aa717;
+        color: #ffffff;
+        font-size: 16px;
+        font-weight: 600;
+        border: none;
+        border-radius: 2px;
+        transition: 0.3s;
+
+        &:hover {
+          transition: 0.5s;
+          background-color: #1fb12c;
+          color: #ffffff;
+        }
+      }
+
+      img {
+        width: 30px;
+        object-fit: contain;
+      }
+    }
+
+    .CirbleGreen {
+    }
+  }
+}

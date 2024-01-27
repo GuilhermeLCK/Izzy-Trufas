@@ -1,0 +1,163 @@
+.Container-InputsVendasPagamento {
+  width: 100vw;
+  height: 100vh;
+  backdrop-filter: blur(
+    3px
+  ); /* Ajuste o valor conforme necessário para controlar o desfoque */
+  position: fixed;
+  z-index: 99;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Container-InputsVendasPagamento-Section {
+  min-width: 98%;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: #18a689;
+  border-radius: 5px;
+  position: relative;
+  padding-block: 20px;
+
+  h2 {
+    color: #ffff;
+    width: 100%;
+    font-size: 22px;
+    font-weight: 400;
+  }
+
+  table {
+    width: 98%;
+    padding-block: 15px;
+  }
+  thead {
+    width: 100%;
+
+    tr {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+    }
+
+    th {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: 1;
+      color: #ffffff;
+      font-size: 16px;
+      font-weight: 600;
+      padding-block: 15px;
+      gap: 5px;
+      border-bottom: 1px solid aliceblue;
+    }
+  }
+
+  tbody {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    tr {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      cursor: pointer;
+
+      &:hover {
+        transition: 0.5s;
+        background-color: #04a081;
+      }
+    }
+
+    td {
+      min-height: 55px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: 1;
+      color: aliceblue;
+      font-size: 15px;
+      font-weight: 300;
+      padding-block: 8px;
+      border-bottom: 1px solid aliceblue;
+      .Desc {
+        background-color: #ff9900;
+      }
+
+      button {
+        padding-block: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40%;
+        background-color: #0aa717;
+        color: rgb(255, 255, 255);
+        font-size: 16px;
+        font-weight: 400;
+        border: none;
+        border-radius: 2px;
+        transition: 0.3s;
+
+        &:hover {
+          transition: 0.5s;
+          color: rgb(48, 48, 48);
+        }
+      }
+
+      img {
+        width: 30px;
+        object-fit: contain;
+      }
+    }
+  }
+}
+
+.Container-InputsVendasPagamento-Section-Button {
+  width: 95%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 400;
+    border: none;
+    border-radius: 2px;
+    transition: 0.3s;
+    height: 40px;
+    width: 180px;
+    color: #ffff;
+    gap: 5px;
+  }
+}
+
+.button_cancelar {
+  background-color: #a30000;
+
+  &:hover {
+    transition: 0.8s;
+    background-color: #8d0000;
+  }
+}
+.button_pagar {
+  background-color: #007aff;
+  &:hover {
+    transition: 0.8s;
+    background-color: #0061c9;
+  }
+}

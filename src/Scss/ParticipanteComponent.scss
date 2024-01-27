@@ -1,0 +1,298 @@
+.Container-ParticipanteComponent {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding-block: 50px;
+  gap: 100px;
+}
+
+.Container-ParticipanteComponent-Section {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  button {
+    min-width: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 35px;
+    padding-inline: 3px;
+    padding-block: 5px;
+    font-size: 14px;
+    font-weight: 400;
+    background-color: #007aff;
+    border: none;
+    border-radius: 5px;
+    font-weight: 700;
+    color: rgb(255, 255, 255);
+    transition: 0.4s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
+      rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+
+    &:hover {
+      transition: 0.8s;
+      background-color: #0061c9;
+      box-shadow: rgba(0, 0, 0, 0.2) 0px 60px 40px -7px;
+    }
+  }
+}
+
+.Container-ParticipanteComponent-Section-ExibirList {
+  width: 40%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 30px;
+
+  input {
+    width: 100%;
+    outline: none;
+    border-radius: 3px;
+    min-width: 40%;
+    border: 1px solid rgb(180, 180, 180);
+    min-height: 35px;
+    padding-inline: 7px;
+    padding-block: 5px;
+    font-size: 14px;
+    font-weight: 400;
+    transition: 0.2s;
+  }
+  input:focus {
+    transition: 0.4s;
+    border: 1px solid #18a689;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 60px 40px -7px;
+  }
+
+  .Container-Participantes-Table {
+    width: 100%;
+    display: flex;
+    max-height: 50vh;
+    overflow: hidden;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #001a2b;
+
+    thead {
+      width: 100%;
+
+      tr {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+      }
+
+      th {
+        min-height: 55px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: 1;
+        color: aliceblue;
+        font-size: 16px;
+        font-weight: 500;
+        padding-block: 15px;
+        gap: 5px;
+        border-bottom: 1px solid aliceblue;
+      }
+    }
+
+    tbody {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: start;
+      flex-direction: column;
+      overflow: auto;
+
+      tr {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+
+        cursor: pointer;
+        background-color: #001a2b;
+
+        &:hover {
+          transition: 0.5s;
+          background-color: rgb(0, 5, 8);
+        }
+      }
+
+      td {
+        min-height: 55px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: 1;
+        color: aliceblue;
+        font-size: 15px;
+        font-weight: 300;
+        padding-block: 8px;
+        border-bottom: 1px solid aliceblue;
+
+        button {
+          padding-block: 5px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 50%;
+          background-color: #7e0101;
+          color: aliceblue;
+          font-size: 16px;
+          font-weight: 400;
+          border: none;
+          border-radius: 2px;
+          transition: 0.3s;
+          gap: 8px;
+
+          &:hover {
+            transition: 0.5s;
+            background-color: #920000;
+            color: #ffffff;
+          }
+        }
+
+        img {
+          width: 30px;
+          object-fit: contain;
+        }
+      }
+    }
+  }
+}
+
+.Container-ParticipanteComponent-Section-New {
+  width: 100vw;
+  height: 100vh;
+  backdrop-filter: blur(3px);
+  position: fixed;
+  z-index: 99;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .Container-ParticipanteComponent-Section-New-Modal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 50%;
+    height: 150px;
+    background-color: #18a689;
+    border-radius: 5px;
+    padding: 20px;
+    gap: 10px;
+
+    h1 {
+      text-align: center;
+      width: 100%;
+      color: #ffffff;
+      width: 100%;
+      font-size: 22px;
+      font-weight: 500;
+    }
+  }
+
+  .Container-ParticipanteComponent-Section-New-Modal-Input {
+    width: 100%;
+
+    form {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    input {
+      width: 40%;
+      outline: none;
+      border-radius: 3px;
+      min-width: 40%;
+      border: 1px solid rgb(180, 180, 180);
+      min-height: 35px;
+      padding-inline: 7px;
+      padding-block: 5px;
+      font-size: 14px;
+      font-weight: 400;
+      transition: 0.2s;
+    }
+    input:focus {
+      transition: 0.4s;
+      border: 1px solid #04c49d;
+    }
+
+    button {
+      min-width: 10%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 35px;
+      padding-inline: 3px;
+      padding-block: 5px;
+      font-size: 14px;
+      font-weight: 400;
+      background-color: #007aff;
+      border: none;
+      border-radius: 5px;
+      font-weight: 700;
+      color: rgb(255, 255, 255);
+      transition: 0.4s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+
+      &:hover {
+        transition: 0.8s;
+        background-color: #0061c9;
+        box-shadow: rgba(0, 0, 0, 0.2) 0px 60px 40px -7px;
+      }
+    }
+
+    .button_close {
+      background-color: #a30000;
+
+      &:hover {
+        transition: 0.8s;
+        background-color: #8d0000;
+      }
+    }
+  }
+}
+
+tbody::-webkit-scrollbar {
+  width: 1px;
+  height: 90%;
+}
+
+tbody::-webkit-scrollbar-track {
+  border-radius: 100px;
+  height: 90%;
+  background-color: #001a2b00;
+}
+
+tbody::-webkit-scrollbar-thumb {
+  background-color: var(--primary-color-light);
+  border-radius: 100px;
+  height: 90%;
+  background-color: #001a2b00;
+}

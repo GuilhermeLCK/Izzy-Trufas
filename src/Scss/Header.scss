@@ -1,0 +1,105 @@
+.Container-Header {
+  width: 100%;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  height: 60px;
+  background-color: #f3f3f4;
+  box-shadow: 6px 4px 5px 0px rgba(145, 145, 145, 0.356);
+  -webkit-box-shadow: 6px 4px 5px 0px rgba(145, 145, 145, 0.247);
+  -moz-box-shadow: 6px 4px 5px 0px rgba(145, 145, 145, 0.185);
+  z-index: 99;
+  margin-bottom: 5px;
+}
+
+.Section-Header-Buttons {
+  width: 50%;
+  flex: 1;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  gap: 20px;
+  padding-inline: 50px;
+
+  a,
+  button {
+    padding: 3px;
+    border: none;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #18a689;
+    width: 170px;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 400;
+    transition: 0.4s;
+    gap: 8px;
+
+    &:hover {
+      transition: 0.6s;
+    }
+  }
+}
+
+.Section-Header-Logo {
+  background-color: #1ab394;
+  height: 100%;
+  width: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  a {
+    font-size: 22px;
+    font-weight: 500;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.Section-Header-Modulo {
+  height: 100%;
+  width: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  h3 {
+    font-size: 15px;
+    color: #676a6c;
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+  }
+}
+
+.FaMoneyBillAlt {
+  font-size: 30px;
+  color: #2d882d;
+}
+
+.FaCartPlus {
+  font-size: 30px;
+  color: #007aff;
+}
+
+.FaBoxOpen {
+  font-size: 30px;
+  color: #d57111;
+}
+
+.FaUserCheck {
+  font-size: 30px;
+  color: #c90000;
+}
+
+.FaQrcode {
+  font-size: 30px;
+  color: #840cd4;
+}
