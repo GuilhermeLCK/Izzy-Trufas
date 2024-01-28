@@ -2,7 +2,7 @@ import React, { useState, useEffect, Context, useContext } from "react";
 import { MyContext } from "../../Context/Context";
 import InputsVendas from "../../Components/Vendas/InputsVendas";
 
-import Table from "../../Components/Vendas/Table";
+import TableVendas from "../../Components/Vendas/TableVendas";
 
 import "./Home.scss";
 const Home = () => {
@@ -15,10 +15,10 @@ const Home = () => {
 
   return (
     <>
-      <div className="Container-Home">
-        <div className="Container-Home-Section">
+      <div className="container-home">
+        <div className="container-home-section">
           <InputsVendas />
-          <Table />
+          <TableVendas />
         </div>
       </div>
     </>

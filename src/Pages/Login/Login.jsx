@@ -6,7 +6,7 @@ function Login({}) {
   const [password, setPassword] = useState("");
 
   function Logar() {
-    const emailValid = "guilherme.lima@izzyway.com.br";
+    const emailValid = "guilherme.lima";
     const senhaValid = "mino111344";
 
     if (emailValid === email && senhaValid === password) {

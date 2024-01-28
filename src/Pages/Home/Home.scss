@@ -1,4 +1,4 @@
-.Container-Home {
+.container-home {
   width: 100%;
   display: flex;
   align-items: center;
@@ -7,11 +7,23 @@
   padding-block: 40px;
 }
 
-.Container-Home-Section {
-  width: 60%;
+.container-home-section {
+  width: 70%;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   gap: 40px;
+}
+
+@media (max-width: 1450px) {
+  .container-home-section {
+    width: 80%;
+  }
+}
+
+@media (max-width: 1250px) {
+  .container-home-section {
+    width: 95%;
+  }
 }

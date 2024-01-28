@@ -20,22 +20,18 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  padding-top: 0px;
-  padding: 0;
+
   thead {
     width: 100%;
 
     tr {
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: space-between;
       width: 100%;
     }
 
     th {
-      display: flex;
-      align-items: center;
-      justify-content: center;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -106,9 +102,6 @@
         width: 30px;
         object-fit: contain;
       }
-    }
-
-    .CirbleGreen {
     }
   }
 }

@@ -146,14 +146,14 @@ function Participante() {
   }
 
   return (
-    <div className="Container-ParticipanteComponent">
-      <div className="Container-ParticipanteComponent-Section">
+    <div className="container-participante">
+      <div className="container-participante-section">
         <button onClick={HandleAbrirModalCriarParticipante}>
           Novo <FaPlus />
         </button>
       </div>
 
-      <div className="Container-ParticipanteComponent-Section-ExibirList">
+      <div className="container-participante-section-list">
         <input
           placeholder="Busca um participante"
           type="text"
@@ -165,7 +165,7 @@ function Participante() {
         {load ? (
           <BeatLoader color="#000000" size={12} />
         ) : (
-          <table className="Container-Participantes-Table">
+          <table className="container-participante-section-table">
             <thead>
               <tr>
                 {arrayTh.map((th, index) => {
@@ -215,10 +215,10 @@ function Participante() {
       </div>
 
       {openModalNewParticipante && (
-        <div className="Container-ParticipanteComponent-Section-New">
-          <div className="Container-ParticipanteComponent-Section-New-Modal">
+        <div className="container-participante-new">
+          <div className="container-participante-new-modal">
             <h1>Criar novo participante</h1>
-            <div className="Container-ParticipanteComponent-Section-New-Modal-Input">
+            <div className="container-participante-new-modal-form">
               <form onSubmit={CriarParticipante}>
                 <input
                   onChange={(e) => {

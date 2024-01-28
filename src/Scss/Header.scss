@@ -1,4 +1,4 @@
-.Container-Header {
+.container-header {
   width: 100%;
   display: flex;
   justify-content: start;
@@ -11,8 +11,42 @@
   z-index: 99;
   margin-bottom: 5px;
 }
+.section-header-logo {
+  background-color: #1ab394;
+  height: 100%;
+  width: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-.Section-Header-Buttons {
+  a {
+    font-size: 22px;
+    font-weight: 500;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.section-header-modulos {
+  height: 100%;
+  width: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  h3 {
+    font-size: 15px;
+    color: #676a6c;
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+  }
+}
+.section-header-btns {
   width: 50%;
   flex: 1;
   display: flex;
@@ -42,43 +76,6 @@
     }
   }
 }
-
-.Section-Header-Logo {
-  background-color: #1ab394;
-  height: 100%;
-  width: 70px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  a {
-    font-size: 22px;
-    font-weight: 500;
-    color: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-}
-
-.Section-Header-Modulo {
-  height: 100%;
-  width: 200px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  h3 {
-    font-size: 15px;
-    color: #676a6c;
-    font-weight: 700;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
-  }
-}
-
 .FaMoneyBillAlt {
   font-size: 30px;
   color: #2d882d;

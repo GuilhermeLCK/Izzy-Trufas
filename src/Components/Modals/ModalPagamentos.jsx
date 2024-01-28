@@ -1,5 +1,5 @@
 import { useContext, useState, React, useEffect } from "react";
-import "../../Scss/InputsVendasPagamento.scss";
+import "../../Scss/ModalPagamentos.scss";
 import { FaTimes } from "react-icons/fa";
 
 import {
@@ -239,98 +239,101 @@ function ModalPagamentos({ OpenModal, vendaUpdate }) {
   }
 
   return (
-    <div className="Container-InputsVendasPagamento">
-      <div className="Container-InputsVendasPagamento-Section">
-        <div>
+    <>
+      <div className="container-modalPagamento">
+        <div className="container-modalPagamento-section">
           <h2>RECEBER CONTAS</h2>
-        </div>
-        <table>
-          <thead>
-            <tr>
-              {arrayTh.map((th, index) => {
-                return <th key={index}>{th}</th>;
-              })}
-            </tr>
-          </thead>
-          <tbody>
-            {VendasUpdatePagamento && VendasUpdatePagamento.length > 0
-              ? VendasUpdatePagamento.filter((venda) => venda.Situacao === 1)
-                  .sort((a, b) => {
-                    const dateA = a.Inclusao.split("/").reverse().join("");
-                    const dateB = b.Inclusao.split("/").reverse().join("");
-                    return dateB.localeCompare(dateA);
-                  })
-                  .map((venda, index) => (
-                    <tr key={index}>
-                      <td>{venda.MovimentoID}</td>
-                      <td>{venda.Participante}</td>
-                      <td>{venda.Inclusao}</td>
-                      <td>{venda.QuantidadeVendida}</td>
-                      <td>
-                        {" "}
-                        {new Intl.NumberFormat("pt-BR", {
-                          style: "currency",
-                          currency: "BRL",
-                        }).format(venda.ValorUnidade)}
-                      </td>
-                      <td>
-                        {" "}
-                        {new Intl.NumberFormat("pt-BR", {
-                          style: "currency",
-                          currency: "BRL",
-                        }).format(venda.TotalVenda)}
-                      </td>
-                      <td>
-                        {venda.VendaAtrasada === true ? (
-                          <FaCircle color="red" />
-                        ) : (
-                          <FaCircle color="green" />
-                        )}
-                      </td>
-                      <td>
-                        <button
-                          className="Desc"
-                          onClick={() => {
-                            HandleModalDesconto(
-                              venda.MovimentoID,
-                              venda.FinanceiroId,
-                              venda.QuantidadeVendida
-                            );
-                          }}
-                        >
-                          <FaPercent />
-                        </button>
-                      </td>
-                      <td>
-                        <button
-                          onClick={() => {
-                            HandleModalPagamentoUnidade(
-                              venda.MovimentoID,
-                              venda.FinanceiroId
-                            );
-                          }}
-                        >
-                          <FaCheckDouble />
-                        </button>
-                      </td>
-                    </tr>
-                  ))
-              : null}
-          </tbody>
-        </table>
 
-        <div className="Container-InputsVendasPagamento-Section-Button">
-          <button onClick={OpenModal} className="button_cancelar">
-            Cancelar <FaTimes />
-          </button>
-          <button
-            onClick={HandleModalPagamentoCompleto}
-            className="button_pagar"
-          >
-            Pagar em Lote <FaArrowRight />
-          </button>
-        </div>
+          <table>
+            <thead>
+              <tr>
+                {arrayTh.map((th, index) => {
+                  return <th key={index}>{th}</th>;
+                })}
+              </tr>
+            </thead>
+            <tbody>
+              {VendasUpdatePagamento && VendasUpdatePagamento.length > 0
+                ? VendasUpdatePagamento.filter((venda) => venda.Situacao === 1)
+                    .sort((a, b) => {
+                      const dateA = a.Inclusao.split("/").reverse().join("");
+                      const dateB = b.Inclusao.split("/").reverse().join("");
+                      return dateB.localeCompare(dateA);
+                    })
+                    .map((venda, index) => (
+                      <tr key={index}>
+                        <td>{venda.MovimentoID}</td>
+                        <td>{venda.Participante}</td>
+                        <td>{venda.Inclusao}</td>
+                        <td>{venda.QuantidadeVendida}</td>
+                        <td>
+                          {" "}
+                          {new Intl.NumberFormat("pt-BR", {
+                            style: "currency",
+                            currency: "BRL",
+                          }).format(venda.ValorUnidade)}
+                        </td>
+                        <td>
+                          {" "}
+                          {new Intl.NumberFormat("pt-BR", {
+                            style: "currency",
+                            currency: "BRL",
+                          }).format(venda.TotalVenda)}
+                        </td>
+                        <td>
+                          {venda.VendaAtrasada === true ? (
+                            <FaCircle color="red" />
+                          ) : (
+                            <FaCircle color="green" />
+                          )}
+                        </td>
+                        <td>
+                          <button
+                            className="Desc"
+                            onClick={() => {
+                              HandleModalDesconto(
+                                venda.MovimentoID,
+                                venda.FinanceiroId,
+                                venda.QuantidadeVendida
+                              );
+                            }}
+                          >
+                            <FaPercent />
+                          </button>
+                        </td>
+                        <td>
+                          <button
+                            onClick={() => {
+                              HandleModalPagamentoUnidade(
+                                venda.MovimentoID,
+                                venda.FinanceiroId
+                              );
+                            }}
+                          >
+                            <FaCheckDouble />
+                          </button>
+                        </td>
+                      </tr>
+                    ))
+                : null}
+            </tbody>
+          </table>
 
+          <div className="container-modalPagamento-section-btn">
+            <button onClick={OpenModal} className="button_cancelar">
+              Cancelar <FaTimes />
+            </button>
+            <button
+              onClick={HandleModalPagamentoCompleto}
+              className="button_pagar"
+            >
+              Pagar em Lote <FaArrowRight />
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <>
         {openModalDesconto ? (
           <ModalYesOrNo
             text={"Confirmar o desconto ?!"}
@@ -354,8 +357,8 @@ function ModalPagamentos({ OpenModal, vendaUpdate }) {
             Confirmar={PagarVendaCompleta}
           />
         ) : null}
-      </div>
-    </div>
+      </>
+    </>
   );
 }
 

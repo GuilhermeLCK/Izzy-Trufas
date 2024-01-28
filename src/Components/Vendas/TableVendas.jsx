@@ -7,13 +7,13 @@ import { collection, onSnapshot } from "firebase/firestore";
 
 import ModalPagamentos from "../Modals/ModalPagamentos";
 
-function Table() {
+function TableVendas() {
   const arrayTh = [
     "Inclusão",
     "Participante",
     "Quantidade",
     "Valor",
-    "Valor da Unidade",
+    "Unitario",
     "Situação",
     "Pagamento",
   ];
@@ -181,4 +181,4 @@ function Table() {
   );
 }
 
-export default Table;
+export default TableVendas;

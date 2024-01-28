@@ -84,3 +84,84 @@
     box-shadow: rgba(0, 0, 0, 0.2) 0px 60px 40px -7px;
   }
 }
+
+#Roxo {
+  background-color: rgb(153, 36, 174);
+  &:hover {
+    transition: 0.8s;
+
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 60px 40px -7px;
+  }
+}
+
+#Amarelo {
+  background-color: rgb(189, 145, 1);
+  &:hover {
+    transition: 0.8s;
+
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 60px 40px -7px;
+  }
+}
+
+#Verde {
+  background-color: rgb(127, 201, 50);
+  &:hover {
+    transition: 0.8s;
+
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 60px 40px -7px;
+  }
+}
+
+#Preto {
+  background-color: rgb(33, 28, 34);
+  &:hover {
+    transition: 0.8s;
+
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 60px 40px -7px;
+  }
+}
+
+#AzulClaro {
+  background-color: rgb(140, 131, 223);
+  &:hover {
+    transition: 0.8s;
+
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 60px 40px -7px;
+  }
+}
+
+#Rosa {
+  background-color: rgb(201, 10, 169);
+  &:hover {
+    transition: 0.8s;
+
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 60px 40px -7px;
+  }
+}
+
+#VerdeEscuro {
+  background-color: rgb(35, 65, 8);
+  &:hover {
+    transition: 0.8s;
+
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 60px 40px -7px;
+  }
+}
+
+#Cinza {
+  background-color: rgb(138, 138, 138);
+  &:hover {
+    transition: 0.8s;
+
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 60px 40px -7px;
+  }
+}
+
+#AzulEscuro {
+  background-color: rgb(0, 9, 58);
+  &:hover {
+    transition: 0.8s;
+
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 60px 40px -7px;
+  }
+}

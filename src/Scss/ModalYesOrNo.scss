@@ -1,4 +1,4 @@
-.Container-ModalYesOrNo {
+.container-modalYesOrNo {
   width: 100vw;
   height: 100vh;
   backdrop-filter: blur(
@@ -12,7 +12,7 @@
   justify-content: center;
 }
 
-.Container-ModalYesOrNo-Section {
+.container-modalYesOrNo-section {
   min-width: 500px;
   padding: 25px;
   display: flex;
@@ -30,7 +30,7 @@
     font-weight: 300;
   }
 
-  .Container-ModalYesOrNo-Section-button {
+  .container-modalYesOrNo-section-btn {
     display: flex;
     align-items: center;
     justify-content: center;

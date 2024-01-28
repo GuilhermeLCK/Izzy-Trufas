@@ -14,6 +14,7 @@ function Dashboard({
   Total01,
   Total02,
   Total03,
+  color,
 }) {
   return (
     <div className="container-dashboard">
@@ -21,7 +22,7 @@ function Dashboard({
         <BeatLoader color="#000000" size={12} />
       ) : (
         <div className="section-dashboard">
-          <div className="mocukp-dashboard" id="Gren">
+          <div className="mocukp-dashboard" id={color[0]}>
             <div className="mocukp-dashboard-icone">
               {icone01}
               <br />
@@ -34,7 +35,7 @@ function Dashboard({
               </h1>
             </div>
           </div>
-          <div className="mocukp-dashboard" id="Blue">
+          <div className="mocukp-dashboard" id={color[1]}>
             <div className="mocukp-dashboard-icone">{icone02}</div>
             <div className="mocukp-dashboard-text">
               <h1>
@@ -44,7 +45,7 @@ function Dashboard({
               </h1>
             </div>
           </div>
-          <div className="mocukp-dashboard" id="Red">
+          <div className="mocukp-dashboard" id={color[2]}>
             <div className="mocukp-dashboard-icone">{icone03}</div>
 
             <div className="mocukp-dashboard-text">

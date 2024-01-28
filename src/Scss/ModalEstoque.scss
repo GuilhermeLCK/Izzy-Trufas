@@ -1,4 +1,4 @@
-.Container-ModalEstoque {
+.container-modalEstoque {
   width: 100vw;
   height: 100vh;
   backdrop-filter: blur(
@@ -12,7 +12,7 @@
   justify-content: center;
 }
 
-.Container-ModalEstoque-Section {
+.container-modalEstoque-section {
   height: 200px;
   min-width: 500px;
   padding: 5px;
@@ -25,7 +25,7 @@
   position: relative;
   gap: 20px;
 
-  .Container-ModalEstoque-Section-input {
+  .container-modalEstoque-section-input {
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -59,7 +59,7 @@
     }
   }
 
-  .Container-ModalEstoque-Section-button {
+  .container-modalEstoque-section-btn {
     display: flex;
     align-items: center;
     justify-content: center;

@@ -95,6 +95,7 @@ function Estoque() {
           !estoque[0]?.QuantidadeVendida ? 0 : estoque[0]?.QuantidadeVendida
         }
         Total03={!estoque[0]?.EstoqueAtual ? 0 : estoque[0]?.EstoqueAtual}
+        color={["Gren", "Blue", "Red"]}
       />
       {openModalInciarValor && (
         <ModalEstoque

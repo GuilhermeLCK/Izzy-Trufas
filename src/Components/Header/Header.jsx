@@ -26,11 +26,11 @@ function Header() {
   }
 
   return (
-    <div className="Container-Header">
-      <div className="Section-Header-Logo">
+    <div className="container-header">
+      <div className="section-header-logo">
         <a href="/"> GLC</a>
       </div>
-      <div className="Section-Header-Modulo">
+      <div className="section-header-modulos">
         <h3>
           {moduloAtual === "Vendas" && (
             <>
@@ -69,7 +69,7 @@ function Header() {
         </h3>
       </div>
 
-      <div className="Section-Header-Buttons">
+      <div className="section-header-btns">
         <a href="/">
           Vendas <FaCartPlus />
         </a>

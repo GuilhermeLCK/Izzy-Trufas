@@ -5,6 +5,7 @@ import { db } from "../../Services/Firebase";
 import { collection, doc, updateDoc } from "firebase/firestore";
 import { FaTimes, FaCheck } from "react-icons/fa";
 import { toast } from "react-toastify";
+import { JackInTheBox } from "react-awesome-reveal";
 
 function ModalEstoque({ estoque, setOpenModalIniciarValor }) {
   const [novoEstoque, setNovoEstoque] = useState("");
@@ -37,29 +38,31 @@ function ModalEstoque({ estoque, setOpenModalIniciarValor }) {
   }
 
   return (
-    <div className="Container-ModalEstoque">
-      <div className="Container-ModalEstoque-Section">
-        <div className="Container-ModalEstoque-Section-input">
-          <h1>Informe seu estoque inicial</h1>
-          <input
-            value={novoEstoque}
-            type="number"
-            placeholder="Digite o valor inicial"
-            onChange={(e) => {
-              setNovoEstoque(e.target.value);
-            }}
-          />
-        </div>
+    <div className="container-modalEstoque">
+      <JackInTheBox direction="down">
+        <div className="container-modalEstoque-section">
+          <div className="container-modalEstoque-section-input">
+            <h1>Informe seu estoque inicial</h1>
+            <input
+              value={novoEstoque}
+              type="number"
+              placeholder="Digite o valor inicial"
+              onChange={(e) => {
+                setNovoEstoque(e.target.value);
+              }}
+            />
+          </div>
 
-        <div className="Container-ModalEstoque-Section-button">
-          <button className="button_close" onClick={HandleFecharModal}>
-            Cancelar <FaTimes />
-          </button>
-          <button className="button_confirm" onClick={HandleEnviarEstoque}>
-            Confirmar <FaCheck />
-          </button>
+          <div className="container-modalEstoque-section-btn">
+            <button className="button_close" onClick={HandleFecharModal}>
+              Cancelar <FaTimes />
+            </button>
+            <button className="button_confirm" onClick={HandleEnviarEstoque}>
+              Confirmar <FaCheck />
+            </button>
+          </div>
         </div>
-      </div>
+      </JackInTheBox>
     </div>
   );
 }
