@@ -13,7 +13,7 @@ function TableVendas() {
     "Participante",
     "Quantidade",
     "Valor",
-    "Unitario",
+    "Média",
     "Situação",
     "Pagamento",
   ];
