@@ -74,7 +74,14 @@ function TableVendas() {
               vendaData.Inclusao
             );
           }
+          vendasAgrupadas[idVendaParticipante].Inclusao.sort(function (a, b) {
+            // Converta as datas para o formato 'mm/dd/yyyy' para garantir uma comparação válida
+            var dateA = new Date(a.split("/").reverse().join("/"));
+            var dateB = new Date(b.split("/").reverse().join("/"));
 
+            // Compare as datas
+            return dateA - dateB;
+          });
           // Atualiza as informações agrupadas {}
           vendasAgrupadas[idVendaParticipante].QuantidadeVendida +=
             vendaData.QuantidadeVendida;
@@ -96,14 +103,19 @@ function TableVendas() {
         );
 
         // Armazena todas as datas de inclusão no campo Inclusao
-        const lastInclusionDate = venda.Inclusao.slice(-2)[0];
+        const lastInclusionDate = venda.Inclusao.slice(-1)[0];
         const lastInclusionDatae = venda.Inclusao[0];
 
+        if (venda.Participante === "Solon") {
+          console.log(venda.Inclusao);
+          console.log(venda.Inclusao.slice(-1)[0]);
+        }
+
         // Atualiza VendaAtrasada se a última data de inclusão for diferente de hoje
-        venda.VendaAtrasada = lastInclusionDate !== dataHoje;
+        venda.VendaAtrasada = lastInclusionDatae !== dataHoje;
 
         // Mostra apenas a última data de inclusão na tabela
-        venda.Inclusao = lastInclusionDatae;
+        venda.Inclusao = lastInclusionDate;
       });
 
       setVendas(listVendas);
