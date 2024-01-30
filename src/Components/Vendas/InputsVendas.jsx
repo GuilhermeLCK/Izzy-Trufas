@@ -216,14 +216,16 @@ function InputsVendas() {
               style={{ display: showResults ? "block" : "none" }}
             >
               {participantesNew.length > 0 ? (
-                participantesNew.map((item) => (
-                  <p
-                    key={item.participanteId}
-                    onClick={() => handleSelecionarParticipante(item.Nome)}
-                  >
-                    {item.Nome}
-                  </p>
-                ))
+                participantesNew
+                  .sort((a, b) => a.Nome.localeCompare(b.Nome))
+                  .map((item) => (
+                    <p
+                      key={item.participanteId}
+                      onClick={() => handleSelecionarParticipante(item.Nome)}
+                    >
+                      {item.Nome}
+                    </p>
+                  ))
               ) : (
                 <p className="Nenhum">Nenhum participante encontrado ...</p>
               )}
