@@ -106,11 +106,6 @@ function TableVendas() {
         const lastInclusionDate = venda.Inclusao.slice(-1)[0];
         const lastInclusionDatae = venda.Inclusao[0];
 
-        if (venda.Participante === "Solon") {
-          console.log(venda.Inclusao);
-          console.log(venda.Inclusao.slice(-1)[0]);
-        }
-
         // Atualiza VendaAtrasada se a última data de inclusão for diferente de hoje
         venda.VendaAtrasada = lastInclusionDatae !== dataHoje;
 

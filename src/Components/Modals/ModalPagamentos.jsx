@@ -27,7 +27,7 @@ function ModalPagamentos({ OpenModal, vendaUpdate }) {
   );
 
   const [openYes, setOpenYes] = useState(false);
-  const valorUnidadeDesconto = 2.5;
+  const valorUnidadeDesconto = 3.33;
 
   const [propsFuncao, setPropsFuncao] = useState([]);
   const arrayTh = [
@@ -140,6 +140,7 @@ function ModalPagamentos({ OpenModal, vendaUpdate }) {
     }
   }
 
+  console.log(propsModalDesconto);
   async function DescontoVenda() {
     try {
       const IdsMovimentos = propsModalDesconto[0];

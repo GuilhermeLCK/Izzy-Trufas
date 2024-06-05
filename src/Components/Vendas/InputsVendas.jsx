@@ -21,7 +21,8 @@ function InputsVendas() {
   const [quantidade, setQuantidade] = useState("");
   const [showResults, setShowResults] = useState(false);
   const searchRef = useRef(null);
-  const valorUnidade = 3;
+  const [valorUnidade, setValorUnidade] = useState(3.5);
+  //let valorUnidade = 3.5;
   const valorUnidadeDesconto = 2.5;
 
   // 1 = pendente
@@ -107,6 +108,14 @@ function InputsVendas() {
         const ano = dataAtual.getFullYear();
         // Formata a data no formato desejado (DD/MM/AAAA)
         const dataFormatada = `${dia}/${mes}/${ano}`;
+
+        if (quantidade == 3) {
+          setValorUnidade(3.3);
+          alert("Desconto");
+        }
+
+        console.log(valorUnidade);
+        console.log(quantidade);
 
         const novaVenda = {
           Participante: partSelecionado.Nome,
