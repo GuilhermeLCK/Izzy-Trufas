@@ -39,30 +39,28 @@ function ModalEstoque({ estoque, setOpenModalIniciarValor }) {
 
   return (
     <div className="container-modalEstoque">
-      <JackInTheBox direction="down">
-        <div className="container-modalEstoque-section">
-          <div className="container-modalEstoque-section-input">
-            <h1>Informe seu estoque inicial</h1>
-            <input
-              value={novoEstoque}
-              type="number"
-              placeholder="Digite o valor inicial"
-              onChange={(e) => {
-                setNovoEstoque(e.target.value);
-              }}
-            />
-          </div>
-
-          <div className="container-modalEstoque-section-btn">
-            <button className="button_close" onClick={HandleFecharModal}>
-              Cancelar <FaTimes />
-            </button>
-            <button className="button_confirm" onClick={HandleEnviarEstoque}>
-              Confirmar <FaCheck />
-            </button>
-          </div>
+      <div className="container-modalEstoque-section">
+        <div className="container-modalEstoque-section-input">
+          <h1>Informe seu estoque inicial</h1>
+          <input
+            value={novoEstoque}
+            type="number"
+            placeholder="Digite o valor inicial"
+            onChange={(e) => {
+              setNovoEstoque(e.target.value);
+            }}
+          />
         </div>
-      </JackInTheBox>
+
+        <div className="container-modalEstoque-section-btn">
+          <button className="button_close" onClick={HandleFecharModal}>
+            Cancelar <FaTimes />
+          </button>
+          <button className="button_confirm" onClick={HandleEnviarEstoque}>
+            Confirmar <FaCheck />
+          </button>
+        </div>
+      </div>
     </div>
   );
 }

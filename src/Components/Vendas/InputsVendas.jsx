@@ -21,8 +21,8 @@ function InputsVendas() {
   const [quantidade, setQuantidade] = useState("");
   const [showResults, setShowResults] = useState(false);
   const searchRef = useRef(null);
-  const [valorUnidade, setValorUnidade] = useState(3.5);
-  //let valorUnidade = 3.5;
+  //const [valorUnidade, setValorUnidade] = useState(3.33);
+  let valorUnidade = 3.5;
   const valorUnidadeDesconto = 2.5;
 
   // 1 = pendente
@@ -109,36 +109,64 @@ function InputsVendas() {
         // Formata a data no formato desejado (DD/MM/AAAA)
         const dataFormatada = `${dia}/${mes}/${ano}`;
 
-        if (quantidade == 3) {
-          setValorUnidade(3.3);
-          alert("Desconto");
+        let novaVendaCriacaoFinanceiro;
+        let novaVenda;
+
+        if (quantidade % 3 === 0) {
+          const totalVenda = (quantidade / 3) * 10; // Cada grupo de 3 unidades custa 10 reais
+          const valorUnidade = totalVenda / quantidade; // Calcula o valor por unidade
+
+          const novaVendaLet = {
+            Participante: partSelecionado.Nome,
+            Inclusao: dataFormatada,
+            VendaParticipanteId: partSelecionado.ParticipanteId,
+            QuantidadeVendida: parseInt(quantidade),
+            ValorUnidade: valorUnidade,
+            TotalVenda: totalVenda,
+            ValorPendenteDePagamento: totalVenda,
+            Situacao: 1,
+          };
+
+          const novaVendaCriacaoFinanceiroLet = {
+            TotalVenda: 10,
+            Inclusao: dataFormatada,
+            VendaParticipanteId: partSelecionado.ParticipanteId,
+            QuantidadeVendida: parseInt(quantidade),
+            ValorUnidade: valorUnidade,
+            TotalVenda: totalVenda,
+            ValorPendenteDePagamento: totalVenda,
+            Situacao: 1,
+          };
+
+          novaVendaCriacaoFinanceiro = novaVendaCriacaoFinanceiroLet;
+          novaVenda = novaVendaLet;
+        } else {
+          const novaVendaLet = {
+            Participante: partSelecionado.Nome,
+            Inclusao: dataFormatada,
+            VendaParticipanteId: partSelecionado.ParticipanteId,
+            QuantidadeVendida: parseInt(quantidade),
+            ValorUnidade: valorUnidade,
+            TotalVenda: valorUnidade * quantidade,
+
+            ValorPendenteDePagamento: valorUnidade * quantidade,
+            Situacao: 1,
+          };
+
+          const novaVendaCriacaoFinanceiroLet = {
+            TotalVenda: valorUnidade * quantidade,
+            ValorPendenteDePagamento: valorUnidade * quantidade,
+
+            Inclusao: dataFormatada,
+            VendaParticipanteId: partSelecionado.ParticipanteId,
+            QuantidadeVendida: parseInt(quantidade),
+            ValorUnidade: valorUnidade,
+            Situacao: 1,
+          };
+
+          novaVendaCriacaoFinanceiro = novaVendaCriacaoFinanceiroLet;
+          novaVenda = novaVendaLet;
         }
-
-        console.log(valorUnidade);
-        console.log(quantidade);
-
-        const novaVenda = {
-          Participante: partSelecionado.Nome,
-          Inclusao: dataFormatada,
-          VendaParticipanteId: partSelecionado.ParticipanteId,
-          QuantidadeVendida: parseInt(quantidade),
-          ValorUnidade: valorUnidade,
-          TotalVenda: valorUnidade * quantidade,
-
-          ValorPendenteDePagamento: valorUnidade * quantidade,
-          Situacao: 1,
-        };
-
-        const novaVendaCriacaoFinanceiro = {
-          TotalVenda: valorUnidade * quantidade,
-          ValorPendenteDePagamento: valorUnidade * quantidade,
-
-          Inclusao: dataFormatada,
-          VendaParticipanteId: partSelecionado.ParticipanteId,
-          QuantidadeVendida: parseInt(quantidade),
-          ValorUnidade: valorUnidade,
-          Situacao: 1,
-        };
 
         const newDocRef = await addDoc(vendasCollectionRef, {
           ...novaVenda,

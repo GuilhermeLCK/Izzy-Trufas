@@ -113,7 +113,7 @@ function Financeiro() {
         const data = doc.data();
         const totalVendaDaVenda = data?.TotalVenda;
         const valorQuantidadeVendida = data?.QuantidadeVendida;
-        const custoPorUnidade = data?.CustoPorUnidade || 1.4; // Valor padrão caso não esteja definido
+        const custoPorUnidade = data?.CustoPorUnidade || 1.5; // Valor padrão caso não esteja definido
 
         totalVendas += totalVendaDaVenda;
         quantidadesVendida += valorQuantidadeVendida;
@@ -225,7 +225,7 @@ function Financeiro() {
     currency: "BRL",
   }).format(
     parseFloat(financeiro?.totalVenda).toFixed(2) -
-      parseInt(financeiro?.valorPendenteDePagamento.toFixed(2))
+      parseFloat(financeiro?.valorPendenteDePagamento.toFixed(2))
   );
 
   const valorPendenteDePagamento = new Intl.NumberFormat("pt-BR", {

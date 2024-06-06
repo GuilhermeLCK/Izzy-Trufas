@@ -38,7 +38,7 @@ function ModalPagamentos({ OpenModal, vendaUpdate }) {
     "Valor da Unidade",
     "Total",
     "Situação",
-    "Desconto",
+
     "Pagamentos",
   ];
   const dataAtual = new Date();
@@ -140,12 +140,15 @@ function ModalPagamentos({ OpenModal, vendaUpdate }) {
     }
   }
 
-  console.log(propsModalDesconto);
   async function DescontoVenda() {
     try {
       const IdsMovimentos = propsModalDesconto[0];
       const IdsFinanceiros = propsModalDesconto[1];
       const Quantidade = propsModalDesconto[2];
+
+      if (Quantidade % 3 !== 0) {
+        return toast.error("Regra de promoção Inválida!");
+      }
 
       const vendaRefMovimentos = doc(
         collection(db, "Movimentos"),
@@ -288,6 +291,8 @@ function ModalPagamentos({ OpenModal, vendaUpdate }) {
                             <FaCircle color="green" />
                           )}
                         </td>
+                        {/*
+                        Comentado
                         <td>
                           <button
                             className="Desc"
@@ -301,7 +306,7 @@ function ModalPagamentos({ OpenModal, vendaUpdate }) {
                           >
                             <FaPercent />
                           </button>
-                        </td>
+                        </td>*/}
                         <td>
                           <button
                             onClick={() => {

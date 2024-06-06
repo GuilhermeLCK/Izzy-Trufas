@@ -28,7 +28,7 @@ function Header() {
   return (
     <div className="container-header">
       <div className="section-header-logo">
-        <a href="/"> GLC</a>
+        <a href="/"> PATY</a>
       </div>
       <div className="section-header-modulos">
         <h3>
