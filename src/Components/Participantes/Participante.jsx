@@ -31,7 +31,7 @@ function Participante() {
   const [openModalDeleteParticipante, setOpenModalDeleteParticipante] =
     useState(false);
 
-  const arrayTh = ["Id", "Inclusão", "Nome", ""];
+  const arrayTh = ["Id", "Inclusão", "Nome", "Contato", ""];
 
   async function CriarParticipante(e) {
     e.preventDefault();
@@ -114,6 +114,7 @@ function Participante() {
             Nome: partiData.Nome,
             Inclusao: partiData.Inclusao,
             ParticipanteId: partiData.ParticipanteId,
+            Contato: partiData.Contato,
           };
         });
         setParticipantesList(listParticipantes);
@@ -162,6 +163,7 @@ function Participante() {
             setParticipanteInput(e.target.value.toLowerCase());
           }}
         />
+
         {load ? (
           <BeatLoader color="#000000" size={12} />
         ) : (
@@ -185,6 +187,11 @@ function Participante() {
                       <td>{participante.ParticipanteId}</td>
                       <td>{participante.Inclusao}</td>
                       <td>{participante.Nome}</td>
+                      <td>
+                        {!participante.Contato
+                          ? "No contato"
+                          : participante.Contato}
+                      </td>
                       <td>
                         <button
                           onClick={() => {

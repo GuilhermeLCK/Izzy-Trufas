@@ -20,7 +20,9 @@ function InputsVendas() {
   const [participantesNew, setParticipantesNew] = useState([]);
   const [quantidade, setQuantidade] = useState("");
   const [showResults, setShowResults] = useState(false);
+  const [loadNovo, setLoadNovo] = useState(false);
   const searchRef = useRef(null);
+
   //const [valorUnidade, setValorUnidade] = useState(3.33);
   let valorUnidade = 3.5;
   const valorUnidadeDesconto = 2.5;
@@ -39,6 +41,7 @@ function InputsVendas() {
         return {
           Nome: list_participantes?.Nome,
           ParticipanteId: list_participantes?.ParticipanteId,
+          Contato: list_participantes?.Contato,
         };
       });
 
@@ -49,6 +52,7 @@ function InputsVendas() {
   const CriarNovaVenda = async (e) => {
     e.preventDefault();
 
+    setLoadNovo(true);
     const participanteSelecionadoMinusculo =
       participanteSelecionado.toLowerCase();
 
@@ -120,6 +124,9 @@ function InputsVendas() {
             Participante: partSelecionado.Nome,
             Inclusao: dataFormatada,
             VendaParticipanteId: partSelecionado.ParticipanteId,
+            VendaParticipanteContato: partSelecionado.Contato
+              ? partSelecionado.Contato
+              : 99999999999,
             QuantidadeVendida: parseInt(quantidade),
             ValorUnidade: valorUnidade,
             TotalVenda: totalVenda,
@@ -131,6 +138,10 @@ function InputsVendas() {
             TotalVenda: 10,
             Inclusao: dataFormatada,
             VendaParticipanteId: partSelecionado.ParticipanteId,
+
+            VendaParticipanteContato: partSelecionado.Contato
+              ? partSelecionado.Contato
+              : 99999999999,
             QuantidadeVendida: parseInt(quantidade),
             ValorUnidade: valorUnidade,
             TotalVenda: totalVenda,
@@ -145,6 +156,9 @@ function InputsVendas() {
             Participante: partSelecionado.Nome,
             Inclusao: dataFormatada,
             VendaParticipanteId: partSelecionado.ParticipanteId,
+            VendaParticipanteContato: partSelecionado.Contato
+              ? partSelecionado.Contato
+              : 99999999999,
             QuantidadeVendida: parseInt(quantidade),
             ValorUnidade: valorUnidade,
             TotalVenda: valorUnidade * quantidade,
@@ -156,9 +170,11 @@ function InputsVendas() {
           const novaVendaCriacaoFinanceiroLet = {
             TotalVenda: valorUnidade * quantidade,
             ValorPendenteDePagamento: valorUnidade * quantidade,
-
             Inclusao: dataFormatada,
             VendaParticipanteId: partSelecionado.ParticipanteId,
+            VendaParticipanteContato: partSelecionado.Contato
+              ? partSelecionado.Contato
+              : 99999999999,
             QuantidadeVendida: parseInt(quantidade),
             ValorUnidade: valorUnidade,
             Situacao: 1,
@@ -199,6 +215,7 @@ function InputsVendas() {
         setParticipanteSelecionado("");
         setQuantidade("");
         toast.success("Venda realizada com sucesso!");
+        setLoadNovo(false);
       } else {
         toast.error(
           "Referência de objeto não definida para uma instância de um objeto! [ERROR: INSIRA UM VALOR MAIOR QUE ZERO!]"
@@ -206,7 +223,7 @@ function InputsVendas() {
       }
     } catch (error) {
       toast.error(
-        "Referência de objeto não definida para uma instância de um objeto! [ERROR:FIREBASE]"
+        "Referência de objeto não definida para uma instância de um objeto! [ERROR:FIREBASE] NEW"
       );
     }
   };
@@ -277,7 +294,7 @@ function InputsVendas() {
               placeholder="Digite a quantidade"
             />
 
-            <button type="submit">
+            <button type="submit" disabled={loadNovo}>
               Novo <FaPlus />
             </button>
           </form>

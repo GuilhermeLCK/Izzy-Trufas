@@ -84,6 +84,8 @@ function Financeiro() {
         if (situacao === 2) {
           movimentosIDs.push(data.MovimentoId);
           financeiroIDs.push(data.FinanceiroId);
+
+          console.log("Pago");
         }
       });
 
@@ -111,14 +113,16 @@ function Financeiro() {
 
       querySnapshot.forEach((doc) => {
         const data = doc.data();
-        const totalVendaDaVenda = data?.TotalVenda;
-        const valorQuantidadeVendida = data?.QuantidadeVendida;
-        const custoPorUnidade = data?.CustoPorUnidade || 1.5; // Valor padrão caso não esteja definido
+        if (!!data.FinanceiroId) {
+          const totalVendaDaVenda = data?.TotalVenda;
+          const valorQuantidadeVendida = data?.QuantidadeVendida;
+          const custoPorUnidade = data?.CustoPorUnidade || 1.5; // Valor padrão caso não esteja definido
 
-        totalVendas += totalVendaDaVenda;
-        quantidadesVendida += valorQuantidadeVendida;
+          totalVendas += totalVendaDaVenda;
+          quantidadesVendida += valorQuantidadeVendida;
 
-        custosTotais += custoPorUnidade * valorQuantidadeVendida;
+          custosTotais += custoPorUnidade * valorQuantidadeVendida;
+        }
       });
 
       const media =
@@ -186,11 +190,35 @@ function Financeiro() {
         });
     };
 
-    // Mover documentos da coleção 'Movimentos' para 'Caixa'
+    const moverParaMovimentoEncerrados = async (
+      documento,
+      id,
+      colecaoOrigem
+    ) => {
+      const movimentoRef = collection(db, "MovimentosEncerrados");
+      const novoDocumentoRef = await addDoc(movimentoRef, documento);
+
+      // Exclua o documento original
+      await deleteDoc(doc(db, colecaoOrigem, id))
+        .then(() => {
+          toast.success(
+            `${colecaoOrigem} movido para Movimentos Encerrados e deletado com sucesso`
+          );
+        })
+        .catch((e) => {
+          console.error("Erro ao deletar documento:", e);
+        });
+    };
+    // Comentado
+    // Mover documentos da coleção 'Movimentos' para 'Movimento'
     const movimentosPromises = movimentosIDs.map(async (id) => {
       const movimentoDoc = await getDoc(doc(db, "Movimentos", id));
       if (movimentoDoc.exists()) {
-        await moverParaCaixa(movimentoDoc.data(), id, "Movimentos");
+        await moverParaMovimentoEncerrados(
+          movimentoDoc.data(),
+          id,
+          "Movimentos"
+        );
       }
     });
 
@@ -203,7 +231,7 @@ function Financeiro() {
     });
 
     // Aguardar a conclusão de todas as movimentações
-    await Promise.all([...movimentosPromises, ...financeiroPromises]);
+    await Promise.all([...financeiroPromises, ...movimentosPromises]);
 
     HandleAbrirModalFecharCaixa();
   }

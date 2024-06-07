@@ -38,7 +38,6 @@ function ModalPagamentos({ OpenModal, vendaUpdate }) {
     "Valor da Unidade",
     "Total",
     "Situação",
-
     "Pagamentos",
   ];
   const dataAtual = new Date();

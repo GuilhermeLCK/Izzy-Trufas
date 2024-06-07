@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "../../Scss/Table.scss";
-import { FaCircle } from "react-icons/fa";
+import { FaMoneyBillWave, FaCircle } from "react-icons/fa";
 
 import { db } from "../../Services/Firebase";
 import { collection, onSnapshot } from "firebase/firestore";
 
 import ModalPagamentos from "../Modals/ModalPagamentos";
+import { toast } from "react-toastify";
 
 function TableVendas() {
   const arrayTh = [
@@ -16,6 +17,7 @@ function TableVendas() {
     "Média",
     "Situação",
     "Pagamento",
+    "Cobrar",
   ];
   const [vendas, setVendas] = useState({});
   const [loadTable, setLoadTable] = useState(false);
@@ -58,6 +60,7 @@ function TableVendas() {
               ValorPendenteDePagamento: vendaData.ValorPendenteDePagamento,
               Situacao: vendaData.Situacao,
               VendaAtrasada: false,
+              Contato: vendaData.VendaParticipanteContato,
             };
           }
 
@@ -121,6 +124,39 @@ function TableVendas() {
     return () => unsubscribeVendas();
   }, []);
 
+  function cobrarCliente(caloteiro) {
+    if (!caloteiro.Contato) {
+      return toast.error(
+        caloteiro.Participante + " não tem número cadastrado ou valido!"
+      );
+    }
+
+    const sendMessage = () => {
+      const phoneNumber = `55${caloteiro.Contato}`;
+      const message = `
+  ➡ Detalhe da compra 
+  
+  Itens:
+  ➡ ${caloteiro.QuantidadeVendida} x TRUFAS
+      
+  Forma de pagamento:
+  💳 Pix
+  (85) 98972-8250
+  Banco Nubank : Guilherme Lima Costa
+
+  Total: R$ ${caloteiro.TotalVenda}
+  
+  Obrigado pela preferência, se precisar de algo é só chamar!`;
+
+      const url = `https://web.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(
+        message
+      )}`;
+      window.open(url, "_blank");
+    };
+
+    sendMessage();
+  }
+
   return (
     <div className="Container-Table">
       <div className="Container-Table-Section">
@@ -168,6 +204,16 @@ function TableVendas() {
                         }}
                       >
                         Pagar
+                      </button>
+                    </td>
+                    <td>
+                      <button
+                        className="Cobrar"
+                        onClick={() => {
+                          cobrarCliente(venda);
+                        }}
+                      >
+                        <FaMoneyBillWave size={22} />
                       </button>
                     </td>
                   </tr>
