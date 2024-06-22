@@ -19,6 +19,8 @@ import ModalYesOrNo from "../Modals/ModalYesOrNo";
 
 function Participante() {
   const [participantesNew, setParticipantesNew] = useState("");
+  const [participantesTelefoneNew, setParticipantesTelefoneNew] = useState("");
+
   const [load, setLoad] = useState(true);
   const [participantesList, setParticipantesList] = useState([]);
   const [participanteInput, setParticipanteInput] = useState("");
@@ -42,8 +44,6 @@ function Participante() {
         participantesNew.toLowerCase().trim()
     );
 
-    console.log(participantesNew.toLowerCase().trim());
-
     if (result) {
       toast.error(
         `Referência de objeto não definida para uma instância de um objeto! ERROR[${participantesNew}]já existe!`
@@ -54,7 +54,7 @@ function Participante() {
     try {
       const participantesCollectionRef = collection(db, "Participantes");
 
-      if (!participantesNew) {
+      if (!participantesNew || !participantesTelefoneNew) {
         toast.error(
           "Referência de objeto não definida para uma instância de um objeto! [ERROR:PARTICIPANTE NULL]"
         );
@@ -63,16 +63,16 @@ function Participante() {
       }
 
       const dataAtual = new Date();
-      // Obtém o dia, mês e ano
+
       const dia = String(dataAtual.getDate()).padStart(2, "0");
       const mes = String(dataAtual.getMonth() + 1).padStart(2, "0"); // Lembre-se que os meses são baseados em zero
       const ano = dataAtual.getFullYear();
-      // Formata a data no formato desejado (DD/MM/AAAA)
       const dataFormatada = `${dia}/${mes}/${ano}`;
 
       const novoParticipante = {
         Nome: participantesNew,
         Inclusao: dataFormatada,
+        Contato: participantesTelefoneNew,
       };
 
       const newDocRefParticipante = await addDoc(participantesCollectionRef, {
@@ -227,14 +227,25 @@ function Participante() {
             <h1>Criar novo participante</h1>
             <div className="container-participante-new-modal-form">
               <form onSubmit={CriarParticipante}>
+                <div>
+                  <input
+                    onChange={(e) => {
+                      setParticipantesNew(e.target.value);
+                    }}
+                    value={participantesNew.value}
+                    type="text"
+                    placeholder="Digite o nome do novo participante"
+                  />
+                </div>
                 <input
                   onChange={(e) => {
-                    setParticipantesNew(e.target.value);
+                    setParticipantesTelefoneNew(e.target.value);
                   }}
-                  value={participantesNew.value}
-                  type="text"
-                  placeholder="Digite o nome do novo participante"
+                  value={participantesTelefoneNew.value}
+                  type="number"
+                  placeholder="Digite o contato do novo participante"
                 />
+
                 <button type="submit">Salvar</button>
                 <button
                   onClick={HandleAbrirModalCriarParticipante}

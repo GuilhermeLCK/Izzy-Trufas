@@ -27,18 +27,18 @@ function ModalPagamentos({ OpenModal, vendaUpdate }) {
   );
 
   const [openYes, setOpenYes] = useState(false);
-  const valorUnidadeDesconto = 3.33;
+  const valorUnidadeDesconto = 3;
 
   const [propsFuncao, setPropsFuncao] = useState([]);
   const arrayTh = [
     "Venda Id",
-    "Participante",
-    "Inclusao",
+    "Inclusão",
     "Quantidade",
-    "Valor da Unidade",
+    "Valor Unid.",
     "Total",
     "Situação",
-    "Pagamentos",
+    "Desconto",
+    "Pagar",
   ];
   const dataAtual = new Date();
   const dia = String(dataAtual.getDate()).padStart(2, "0");
@@ -144,9 +144,14 @@ function ModalPagamentos({ OpenModal, vendaUpdate }) {
       const IdsMovimentos = propsModalDesconto[0];
       const IdsFinanceiros = propsModalDesconto[1];
       const Quantidade = propsModalDesconto[2];
+      const ValorUnidade = propsModalDesconto[3];
 
-      if (Quantidade % 3 !== 0) {
+      if (Quantidade == 1) {
         return toast.error("Regra de promoção Inválida!");
+      }
+
+      if (ValorUnidade == 3) {
+        return toast.error("Regra de promoção já foi aplicada!");
       }
 
       const vendaRefMovimentos = doc(
@@ -220,7 +225,8 @@ function ModalPagamentos({ OpenModal, vendaUpdate }) {
   function HandleModalDesconto(
     vendaMovimentoID,
     vendaFinanceiroId,
-    vendaQuantidadeVendida
+    vendaQuantidadeVendida,
+    ValorUnidade
   ) {
     setOpenModalDesconto(!openModalDesconto);
 
@@ -228,6 +234,7 @@ function ModalPagamentos({ OpenModal, vendaUpdate }) {
       vendaMovimentoID,
       vendaFinanceiroId,
       vendaQuantidadeVendida,
+      ValorUnidade,
     ]);
   }
 
@@ -266,7 +273,7 @@ function ModalPagamentos({ OpenModal, vendaUpdate }) {
                     .map((venda, index) => (
                       <tr key={index}>
                         <td>{venda.MovimentoID}</td>
-                        <td>{venda.Participante}</td>
+
                         <td>{venda.Inclusao}</td>
                         <td>{venda.QuantidadeVendida}</td>
                         <td>
@@ -290,8 +297,7 @@ function ModalPagamentos({ OpenModal, vendaUpdate }) {
                             <FaCircle color="green" />
                           )}
                         </td>
-                        {/*
-                        Comentado
+
                         <td>
                           <button
                             className="Desc"
@@ -299,13 +305,14 @@ function ModalPagamentos({ OpenModal, vendaUpdate }) {
                               HandleModalDesconto(
                                 venda.MovimentoID,
                                 venda.FinanceiroId,
-                                venda.QuantidadeVendida
+                                venda.QuantidadeVendida,
+                                venda.ValorUnidade
                               );
                             }}
                           >
                             <FaPercent />
                           </button>
-                        </td>*/}
+                        </td>
                         <td>
                           <button
                             onClick={() => {

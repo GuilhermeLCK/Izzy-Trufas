@@ -80,11 +80,12 @@
 
       &:hover {
         transition: 0.5s;
-        background-color: #04a081;
+        background-color: #17bd9b;
       }
     }
 
     td {
+      min-width: 12%;
       min-height: 55px;
       display: flex;
       align-items: center;
@@ -93,6 +94,7 @@
       color: aliceblue;
       font-size: 15px;
       font-weight: 300;
+
       padding-block: 8px;
       border-bottom: 1px solid aliceblue;
       .Desc {

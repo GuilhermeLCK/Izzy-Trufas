@@ -14,7 +14,6 @@ function TableVendas() {
     "Participante",
     "Quantidade",
     "Valor",
-    "Média",
     "Situação",
     "Pagamento",
     "Cobrar",
@@ -55,7 +54,7 @@ function TableVendas() {
               MovimentosIDs: [],
               FinanceiroIDs: [],
               QuantidadeVendida: 0,
-              ValorUnidade: 0, // Inicializa com zero para acumular
+              ValorUnidade: 0,
               TotalVenda: 0,
               ValorPendenteDePagamento: vendaData.ValorPendenteDePagamento,
               Situacao: vendaData.Situacao,
@@ -127,15 +126,25 @@ function TableVendas() {
   function cobrarCliente(caloteiro) {
     if (!caloteiro.Contato) {
       return toast.error(
-        caloteiro.Participante + " não tem número cadastrado ou valido!"
+        caloteiro.Participante + " não tem número cadastrado ou válido!"
       );
     }
 
+    const salarioFormatado = new Intl.NumberFormat("pt-BR", {
+      style: "currency",
+      currency: "BRL",
+    }).format(caloteiro.TotalVenda);
+
+    console.log(caloteiro);
+
     const sendMessage = () => {
       const phoneNumber = `55${caloteiro.Contato}`;
+
       const message = `
   ➡ Detalhe da compra 
-  
+
+  Nome: ${caloteiro.Participante}
+
   Itens:
   ➡ ${caloteiro.QuantidadeVendida} x TRUFAS
       
@@ -143,15 +152,17 @@ function TableVendas() {
   💳 Pix
   (85) 98972-8250
   Banco Nubank : Guilherme Lima Costa
-
-  Total: R$ ${caloteiro.TotalVenda}
+  
+  Total: ${salarioFormatado}
   
   Obrigado pela preferência, se precisar de algo é só chamar!`;
 
       const url = `https://web.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(
         message
       )}`;
-      window.open(url, "_blank");
+      // window.open(url, "_blank");
+
+      console.log(url);
     };
 
     sendMessage();
@@ -184,12 +195,12 @@ function TableVendas() {
                         currency: "BRL",
                       }).format(venda.TotalVenda)}
                     </td>
-                    <td>
+                    {/* <td>
                       {new Intl.NumberFormat("pt-BR", {
                         style: "currency",
                         currency: "BRL",
                       }).format(venda.ValorUnidade)}
-                    </td>
+                    </td> */}
                     <td>
                       {venda.VendaAtrasada === false ? (
                         <FaCircle color="green" />
